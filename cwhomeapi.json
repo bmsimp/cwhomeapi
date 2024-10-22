@@ -1,0 +1,1214 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CW Home Community API",
+    "description": "A community created API document for CW Home until such time that ConnectWise creates their own.",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "https://auth.connectwise.com/api"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "servers": [
+          {
+            "url": "https://iambff.itsupport247.net/iambff/v1"
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "description": "Returns a list of user objects",
+        "summary": "List Users",
+        "operationId": "listUsers",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json;version=1.0",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Creates a new User",
+        "summary": "Create User",
+        "operationId": "createUser",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json;version=3.0",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "user response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "description": "Get user by id",
+        "summary": "Get User by ID",
+        "operationId": "getUserById",
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json;version=1.0",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connected-apps": {
+      "get": {
+        "tags": [
+          "Connected Apps"
+        ],
+        "servers": [
+          {
+            "url": "https://iambff.itsupport247.net/iambff/v1"
+          }
+        ],
+        "description": "List all connected apps settings",
+        "summary": "List Connected App Settings",
+        "operationId": "listConnectedAppSettings",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json;version=1.0",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully return connected application settings, including application roles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/connectedAppSettings"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connected-apps/asio_platform": {
+      "get": {
+        "tags": [
+          "Connected Apps"
+        ],
+        "servers": [
+          {
+            "url": "https://iambff.itsupport247.net/iambff/v1"
+          }
+        ],
+        "description": "Get settings for Asio platform",
+        "summary": "Get Asio Platform Settings",
+        "operationId": "getAsioPlatformSettings",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json;version=1.0",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully return Asio connected application settings, including application roles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/connectedAppSettings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/connected-apps/asio_platform/app-role-mappings": {
+      "put": {
+        "description": "Add user to Asio application role",
+        "summary": "Add User to Asio App Role",
+        "operationId": "addUserToAsioAppRole",
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json;version=1.0",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://iambff.itsupport247.net/iambff/v1"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/asioRoleRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User added response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/identity-roles": {
+      "put": {
+        "description": "Add user to CW Home identity role",
+        "summary": "Add User to CW Home Identity Role",
+        "operationId": "addUserToIdentityRole",
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://iambff.itsupport247.net/iambff/v1"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/identityRoleRequestBody"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ExternalMFAProviders": {
+      "get": {
+        "description": "List external MFA providers",
+        "summary": "List External MFA Providers",
+        "operationId": "getExternalMfaProviders",
+        "tags": [
+          "Options"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "enabled",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful MFA provider response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/externalMfaProvider"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/LoginProviders": {
+      "get": {
+        "description": "List login providers",
+        "summary": "List Login providers",
+        "operationId": "getLoginProviders",
+        "tags": [
+          "Options"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful login provider response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/loginProvider"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/roles": {
+      "get": {
+        "tags": [
+          "Identity Role"
+        ],
+        "description": "List identity roles",
+        "summary": "List Identity Roles",
+        "operationId": "listIdentityRoles",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "includeUsersCount",
+            "description": "Setting to true will return the number of users assigned to the role. Leaving this blank will default to false which returns 0 for all roles.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json;version=1.0",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful listing of identity roles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/identityRole"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/roles/{role_id}": {
+      "get": {
+        "tags": [
+          "Identity Role"
+        ],
+        "description": "Get details of identity role by ID",
+        "summary": "Get Identity Role by ID",
+        "operationId": "getIdentityRoleById",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "includeUsersCount",
+            "description": "Setting to true will return the number of users assigned to the role. Leaving this blank will default to false which returns 0 for all roles.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "role_id",
+            "in": "path",
+            "description": "ID of a role",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json;version=1.0",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful identity role response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/identityRole"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/roles/{role_id}/users": {
+      "get": {
+        "tags": [
+          "Identity Role"
+        ],
+        "description": "Get users assigned to identity role",
+        "summary": "Get Users Assigned to Identity Role",
+        "operationId": "getUsersAssignedToIdentityRole",
+        "parameters": [
+          {
+            "name": "role_id",
+            "in": "path",
+            "description": "ID of a role",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json;version=1.0",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully listed users assigned to identity role",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools/products": {
+      "get": {
+        "tags": [
+          "Tools"
+        ],
+        "servers": [
+          {
+            "url": "https://home.connectwise.com/api"
+          }
+        ],
+        "description": "List CW products",
+        "summary": "List CW Products",
+        "operationId": "listCWProducts",
+        "responses": {
+          "200": {
+            "description": "Successfully listed products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/application"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/company/companies/teams/accountManager": {
+      "get": {
+        "tags": [
+          "Account Team"
+        ],
+        "servers": [
+          {
+            "url": "https://home.connectwise.com/api"
+          }
+        ],
+        "description": "Get Account Manager",
+        "summary": "Get Account Manager",
+        "operationId": "getAccountManager",
+        "responses": {
+          "200": {
+            "description": "Successfully fetched account manager",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accountTeamMember"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to fetch account manager",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/company/companies/teams/successManager": {
+      "get": {
+        "tags": [
+          "Account Team"
+        ],
+        "servers": [
+          {
+            "url": "https://home.connectwise.com/api"
+          }
+        ],
+        "description": "Get Client Success Manager",
+        "summary": "Get Client Success Manager",
+        "operationId": "getClientSuccessManager",
+        "responses": {
+          "200": {
+            "description": "Successfully fetched client success manager",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accountTeamMember"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to fetch client success manager",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/company/companies/teams/partnerSalesExecutive": {
+      "get": {
+        "tags": [
+          "Account Team"
+        ],
+        "servers": [
+          {
+            "url": "https://home.connectwise.com/api"
+          }
+        ],
+        "description": "Get Partner Sales Executive",
+        "summary": "Get Partner Sales Executive",
+        "operationId": "getPartnerSalesExecutive",
+        "responses": {
+          "200": {
+            "description": "Successfully fetched partner sales executive",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accountTeamMember"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to fetch partner sales executive",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/company/companies/teams/partnerDevelopmentManager": {
+      "get": {
+        "tags": [
+          "Account Team"
+        ],
+        "servers": [
+          {
+            "url": "https://home.connectwise.com/api"
+          }
+        ],
+        "description": "Get Partner Development Manager",
+        "summary": "Get Partner Development Manager",
+        "operationId": "getPartnerDevelopmentManager",
+        "responses": {
+          "200": {
+            "description": "Successfully fetched partner development manager",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accountTeamMember"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to fetch partner development manager",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user": {
+        "type": "object",
+        "required": [
+          "partnerId",
+          "userName",
+          "email",
+          "firstName",
+          "lastName",
+          "additionalClaims"
+        ],
+        "properties": {
+          "partnerId": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "mfaEnabled": {
+            "type": "boolean"
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "isDisabled": {
+            "type": "boolean"
+          },
+          "isPending": {
+            "type": "boolean"
+          },
+          "isInviteLinkValid": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "created": {
+            "type": "integer",
+            "format": "unix-timestamp"
+          },
+          "updated": {
+            "type": "number",
+            "format": "unix-timestamp"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "loginScheme": {
+            "type": "string"
+          },
+          "additionalClaims": {
+            "type": "object",
+            "properties": {
+              "claimType": {
+                "type": "string",
+                "enum": [
+                  "contact_email"
+                ]
+              },
+              "claimValue": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "contact"
+                    ]
+                  }
+                }
+              },
+              "claimValueType": {
+                "type": "string",
+                "enum": [
+                  "json"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "loginProvider": {
+        "type": "object",
+        "properties": {
+          "authority": {
+            "type": "string"
+          },
+          "clientId": {
+            "type": "string"
+          },
+          "clientName": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "protocolType": {
+            "type": "string"
+          },
+          "providerId": {
+            "type": "integer"
+          },
+          "responseType": {
+            "type": "string"
+          },
+          "scheme": {
+            "type": "string"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "externalMfaProvider": {
+        "type": "object"
+      },
+      "identityRole": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "roleClaims": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "usersCount": {
+            "type": "number"
+          }
+        }
+      },
+      "application": {
+        "type": "object",
+        "properties": {
+          "submitFirstUsageForm": {
+            "type": "boolean"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "instanceId": {
+            "type": "string"
+          },
+          "productInfo1": {
+            "type": "string"
+          },
+          "productInfo2": {
+            "type": "string"
+          },
+          "stsClientId": {
+            "type": "string"
+          },
+          "information": {
+            "type": "string"
+          },
+          "inTrial": {
+            "type": "boolean"
+          },
+          "purchased": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "provisioning": {
+            "type": "boolean"
+          },
+          "trialExpired": {
+            "type": "boolean"
+          },
+          "launchUrl": {
+            "type": "string"
+          },
+          "hasActiveInstance": {
+            "type": "boolean"
+          },
+          "paymentPastDue": {
+            "type": "string"
+          },
+          "billNextDateUnixTimeSeconds": {
+            "type": "integer"
+          },
+          "allowFreeTrial": {
+            "type": "boolean"
+          },
+          "daysLeftInTrial": {
+            "type": "integer"
+          },
+          "controlDualTrial": {
+            "type": "boolean"
+          },
+          "failed": {
+            "type": "boolean"
+          },
+          "allowAddToCart": {
+            "type": "boolean"
+          },
+          "purchaseUrl": {
+            "type": "string"
+          },
+          "allowRequestForQuoteOrDemo": {
+            "type": "boolean"
+          },
+          "activeLicenses": {
+            "type": "integer"
+          }
+        }
+      },
+      "message": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "asioRoleRequestBody": {
+        "type": "object",
+        "properties": {
+          "connectedAppRoles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "assignedResources": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "roleId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "connectedAppSettings": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "number"
+          },
+          "applicationBaseName": {
+            "type": "string"
+          },
+          "iconName": {
+            "type": "string"
+          },
+          "authorizationEnabled": {
+            "type": "boolean"
+          },
+          "authorization": {
+            "type": "object",
+            "properties": {
+              "roleAssignment": {
+                "type": "object",
+                "properties": {
+                  "hasSingleAppRoleConstraint": {
+                    "type": "boolean"
+                  },
+                  "forbidIdentityRoleAssignment": {
+                    "type": "boolean"
+                  },
+                  "applicationRoles": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/applicationRole"
+                    }
+                  },
+                  "getAppRolesURL": {
+                    "type": "string"
+                  }
+                }
+              },
+              "corporateStructure": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "levelsUrl": {
+                    "type": "string"
+                  },
+                  "containersPerLevelUrl": {
+                    "type": "string"
+                  },
+                  "companiesUrl": {
+                    "type": "string"
+                  },
+                  "sitesUrl": {
+                    "type": "string"
+                  },
+                  "constraints": {
+                    "type": "object",
+                    "properties": {
+                      "containerAssignment": {
+                        "$ref": "#/components/schemas/constraintAssignment"
+                      },
+                      "companyAssignment": {
+                        "$ref": "#/components/schemas/constraintAssignment"
+                      },
+                      "siteAssignment": {
+                        "$ref": "#/components/schemas/constraintAssignment"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "accessRestrictions": {
+            "type": "object",
+            "properties": {
+              "accessType": {
+                "type": "string"
+              },
+              "accessUrl": {
+                "type": "string"
+              },
+              "evaluationExpression": {
+                "type": "string"
+              }
+            }
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "clientId": {
+            "type": "string"
+          },
+          "clientName": {
+            "type": "string"
+          },
+          "accessManagementUrl": {
+            "type": "string"
+          },
+          "redirectUris": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "usersCount": {
+            "type": "number"
+          },
+          "softwareId": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/applicationClaim"
+            }
+          },
+          "isCommon": {
+            "type": "boolean"
+          },
+          "userAccessControlEnabled": {
+            "type": "boolean"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "access_management_endpoint": {
+                "type": "string"
+              },
+              "user_access_control_enabled": {
+                "type": "string"
+              },
+              "initiate_login_uri": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "applicationClaim": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "applicationRole": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "resourceConstraint": {
+            "type": "object"
+          },
+          "roleTypeHints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "constraintAssignment": {
+        "type": "object",
+        "properties": {
+          "maxSelections": {
+            "type": "number"
+          },
+          "enableSelectAll": {
+            "type": "boolean"
+          },
+          "enableFutureResourceAccessSelection": {
+            "type": "boolean"
+          }
+        }
+      },
+      "accountTeamMember": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "defaultEmail": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "hasSuccessManager": {
+            "type": "boolean"
+          }
+        }
+      },
+      "identityRoleRequestBody": {
+        "type": "object",
+        "properties": {
+          "identityRoleIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oAuth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://auth.connectwise.com/connect/authorize",
+            "tokenUrl": "https://auth.connectwise.com/connect/token",
+            "scopes": {
+              "openid": "openid",
+              "profile": "profile",
+              "api.users": "api.users",
+              "api.sts.admin": "api.sts.admin",
+              "api.users.import": "api.users.import",
+              "offline_access": "offline_access"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "User"
+    },
+    {
+      "name": "Identity Role"
+    },
+    {
+      "name": "Connected Apps"
+    },
+    {
+      "name": "Options"
+    },
+    {
+      "name": "Tools"
+    },
+    {
+      "name": "Account Team"
+    }
+  ]
+}
