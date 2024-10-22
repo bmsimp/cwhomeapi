@@ -307,6 +307,21 @@
               }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated identity role(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/appRoleResponse"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -1167,6 +1182,23 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "appRoleResponse": {
+        "type": "object",
+        "properties": {
+          "Status": {
+            "type": "number"
+          },
+          "identityRoleId": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
           }
         }
       }
