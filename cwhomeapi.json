@@ -279,6 +279,15 @@
         ],
         "parameters": [
           {
+            "in": "header",
+            "name": "Content-Type",
+            "schema": {
+              "type": "string",
+              "default": "application/json;version=1.0"
+            },
+            "required": true
+          },
+          {
             "name": "user_id",
             "in": "path",
             "description": "ID of user",
