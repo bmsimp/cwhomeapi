@@ -13,11 +13,6 @@
   "paths": {
     "/users": {
       "get": {
-        "servers": [
-          {
-            "url": "https://iambff.itsupport247.net/iambff/v1"
-          }
-        ],
         "tags": [
           "User"
         ],
